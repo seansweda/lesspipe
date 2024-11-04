@@ -509,7 +509,7 @@ isfinal () {
 			# filename needs to end in .class
 			has_cmd procyon && t=$t.class && cat "$1" > "$t" && cmd=(procyon "$t") ;;
 		markdown)
-			[[ $COLOR = *always ]] && mdopt=() || mdopt=(-c)
+			[[ $COLOR = *always ]] && mdopt=(--ansi ) || mdopt=(-c)
 			{ has_cmd mdcat && cmd=(mdcat "${mdopt[@]}" "$1"); } ||
 			{ has_cmd pandoc && cmd=(pandoc -t plain "$1"); } ;;
 		docx)
