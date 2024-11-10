@@ -369,6 +369,11 @@ get_unpack_cmd () {
 				{ has_cmd 7za && prog=7za; } ;;
 		esac
 	fi
+	if [[ "$prog" = ar && "$2" = *@* ]]; then
+		t=$(nexttmp)
+		cat "$2" > "$t"
+		set "$2" "$t"
+	fi
 	[[ -n $prog ]] && cmd=(isarchive "$prog" "$2" "$file2")
 	if [[ -n ${cmd[*]} ]]; then
 		[[ -n "$file2" ]] && file2= && return
@@ -747,6 +752,11 @@ isdeb () {
 			bsdtar xOf "$1" "$data" | bsdtar xOf - "$2"
 		fi
 	else
+		if [[ "$1" = *@* ]]; then
+			t=$(nexttmp)
+			cat "$1" > "$t"
+			set "$1" "$t"
+		fi
 		data=$(ar t "$1"|grep data)
 		ft=$(ar p "$1" "$data" | filetype -)
 		get_unpack_cmd "$ft" -
