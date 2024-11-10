@@ -1,6 +1,7 @@
 ****************************************************************************
 # ChangeLog for lesspipe.sh						   #
 ****************************************************************************
+Version 2.16 Nov 10 2024
 - security fix: check file name if used with ar
 - add --ansi to mdcat (fixes #48)
 - improved recognition of appimage files

@@ -1,6 +1,6 @@
 # lesspipe.sh, a preprocessor for less
 
-Version: 2.15
+Version: 2.16
 Author : Wolfgang Friebel [wp.friebel@gmail.com](mailto://wp.friebel@gmail.com)
 License: GPL
 
@@ -127,6 +127,8 @@ the author by email.
         eval "$(lesspipe.sh)"             # (bash) or
         lesspipe.sh | source /dev/stdin   # (zsh)
 ```
+Several Linux distributions do now set **LESSOPEN** by default and if the contents of the variable is not referring to this lesspipe.sh version, it has to be redefined to get the functionality described here.
+
  As `lesspipe.sh` is accepting only a single argument, a hierarchical list of file
  names has to be separated by a non-blank character. A colon is rarely found
  in file names, therefore it has been chosen as the separator character. If a

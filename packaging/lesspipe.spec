@@ -89,6 +89,8 @@ cd $RPM_BUILD_DIR
 %docdir %{prefix}/share/man/man1
 
 %changelog
+* Sun Nov 10 2024 2.16-1 - wp.friebel@gmail.com
+- file name checks for ar
 * Thu Oct 03 2024 2.15-1 - wp.friebel@gmail.com
 - display all certificates in pem files
 * Fri Aug 16 2024 2.14-1 - wp.friebel@gmail.com
