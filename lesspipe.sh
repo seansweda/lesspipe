@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # lesspipe.sh, a preprocessor for less
-lesspipe_version=2.16
+ lesspipe_version=2.16
 # Author: Wolfgang Friebel (wp.friebel AT gmail.com)
 
 has_cmd () {
@@ -298,8 +298,8 @@ get_unpack_cmd () {
 		lz4)
 			has_cmd lz4 && cmd=(lz4 -cdq "$2") ;;
 		xlsx)
-			{ has_cmd in2csv && cmd=(in2csv -f xls "$2"); } ||
-			{ has_cmd excel2csv && cmd=(istemp xls2csv "$2"); } ;;
+			{ has_cmd in2csv && cmd=(in2csv -f xlsx "$2"); } ||
+			{ has_cmd excel2csv && cmd=(istemp excel2csv "$2"); } ;;
 		ms-excel)
 			{ has_cmd in2csv && cmd=(in2csv -f xls "$2"); } ||
 			{ has_cmd xls2csv && cmd=(istemp xls2csv "$2"); } ;;

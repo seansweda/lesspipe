@@ -1,6 +1,7 @@
 ****************************************************************************
 # ChangeLog for lesspipe.sh						   #
 ****************************************************************************
+- correct typo in xlsx files handling
 Version 2.16 Nov 10 2024
 - security fix: check file name if used with ar
 - add --ansi to mdcat (fixes #48)
