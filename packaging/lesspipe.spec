@@ -1,5 +1,5 @@
 %define packagename lesspipe
-%define packageversion 2.14
+%define packageversion 2.17
 %define packagerelease 1
 
 Name:          %{packagename}
@@ -89,6 +89,8 @@ cd $RPM_BUILD_DIR
 %docdir %{prefix}/share/man/man1
 
 %changelog
+* Sun Dec 22 2024 2.17-1 - wp.friebel@gmail.com
+- Fixes for xslx and MacOS
 * Sun Nov 10 2024 2.16-1 - wp.friebel@gmail.com
 - file name checks for ar
 * Thu Oct 03 2024 2.15-1 - wp.friebel@gmail.com

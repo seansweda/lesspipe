@@ -1,6 +1,7 @@
 ****************************************************************************
 # ChangeLog for lesspipe.sh						   #
 ****************************************************************************
+Version 2.17 Dec 22 2024
 - evaluation of current locale changed (compatible with old bash versions)
 - correct typo in xlsx files handling
 Version 2.16 Nov 10 2024
