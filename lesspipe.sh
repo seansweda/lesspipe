@@ -841,8 +841,7 @@ set +o noclobber
 setopt sh_word_split 2>/dev/null
 PATH=$PATH:${0%%/lesspipe.sh}
 # the current locale in lowercase (or generic utf-8)
-declare -l charmap
-charmap=$(locale -k  charmap) || charmap="charmap=utf-8"
+charmap=$(locale -k  charmap|tr '[:upper:]' '[:lower:]') || charmap="charmap=utf-8"
 eval "$charmap"
 
 sep=:					# file name separator

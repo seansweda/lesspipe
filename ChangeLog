@@ -1,6 +1,7 @@
 ****************************************************************************
 # ChangeLog for lesspipe.sh						   #
 ****************************************************************************
+- evaluation of current locale changed (compatible with old bash versions)
 - correct typo in xlsx files handling
 Version 2.16 Nov 10 2024
 - security fix: check file name if used with ar
