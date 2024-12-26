@@ -414,7 +414,7 @@ has_colorizer () {
 	[[ $2 == plain || -z $2 ]] && return
 	prog=${LESSCOLORIZER%% *}
 
-	for i in nvimpager bat batcat pygmentize source-highlight vimcolor code2color ; do
+	for i in highlight nvimpager bat batcat pygmentize source-highlight vimcolor code2color ; do
 		[[ -z $prog || $prog == "$i" ]] && has_cmd "$i" && prog=$i
 	done
 	[[ "$2" =~ ^[0-9]*$ || -z "$2" ]] || lang=$2
@@ -468,6 +468,13 @@ has_colorizer () {
 			opt=(-c "$1")
 			[[ -n "$3" ]] && ft=${3##*/} && ft=${ft##*.} &&
 				opt=(-c "$1" --cmd "set filetype=$ft") ;;
+		highlight)
+			[[ -n $lang ]] && highlight -S $lang --syntax-supported 2>/dev/null >/dev/null && opt=(-S "$lang")
+			[[ -n $LESSCOLORIZER && $LESSCOLORIZER = *\ *--style=* ]] && style="${LESSCOLORIZER/* --style=/}"
+			[[ -n $style ]] && opt+=(--style="${style%% *}")
+			[[ -n $style ]] && opt+=(-O xterm256) || opt+=(-O ansi)
+			opt+=("--validate-input")
+			opt+=("$1") ;;
 		*)
 			return ;;
 	esac
