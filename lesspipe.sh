@@ -287,13 +287,13 @@ get_unpack_cmd () {
 	declare t
 	# uncompress / transform
 	case $x in
-		gzip|bzip2|lzip|lzma|xz|brotli|compress)
+		bzip2|lzip|lzma|xz|brotli|compress)
 			# remember name of uncompressed file
 			[[ $2 == - ]] || fileext="$2"
 			fileext=${fileext%%.gz}; fileext=${fileext%%.bz2}
 			[[ $x == compress ]] && x=gzip
 			has_cmd "$x" && cmd=("$x" -cd "$2") ;;
-		zstd)
+		zstd|gzip)
 			has_cmd zstd && cmd=(zstd -cdqM1073741824 "$2") ;;
 		lz4)
 			has_cmd lz4 && cmd=(lz4 -cdq "$2") ;;
