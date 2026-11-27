@@ -321,7 +321,7 @@ get_unpack_cmd () {
 	[[ "$3" == $sep$sep ]] && return
 	# uncompress / transform
 	case $x in
-		gzip|bzip2|lzip|lzma|xz|compress)
+		bzip2|lzip|lzma|xz|compress)
 			# remember name of uncompressed file
 			[[ $2 == - ]] || fileext="$2"
 			fileext=${fileext%%.gz}; fileext=${fileext%%.bz2}
@@ -329,7 +329,7 @@ get_unpack_cmd () {
 			has_cmd "$x" && cmd=("$x" -cd "$2") ;;
 		brotli)
 			has_cmd "$x" "brotli 1.2.1" && cmd=("$x" -cd "$2") ;;
-		zstd)
+		zstd|gzip)
 			has_cmd zstd && cmd=(zstd -cdqM1073741824 "$2") ;;
 		lz4)
 			has_cmd lz4 && cmd=(lz4 -cdq "$2") ;;
