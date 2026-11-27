@@ -461,7 +461,7 @@ find_colorizer () {
 	# Handle vim/vimcolor special case
 	[[ $prog == *vimcolor ]] && ! has_cmd vim && ! has_cmd nvim && prog=
 	if [[ -z $prog ]]; then
-		for i in nvimpager batcat bat pygmentize e2ansi-cat source-highlight vim nvim code2color ; do
+		for i in highlight nvimpager batcat bat pygmentize e2ansi-cat source-highlight vim nvim code2color ; do
 			has_cmd "$i" && prog=$i && break
 		done
 		[[ $prog == *vim ]] && prog=vimcolor
@@ -476,6 +476,8 @@ check_lang () {
 	lang=$2
 	[[ -z $lang ]] && return
 	case $prog in
+		highlight)
+			$prog -S "$lang" --syntax-supported /dev/null &>/dev/null && languages=":$lang:" ;;
 		bat|batcat)
 			lang=$(echo "$lang"|tr '[:upper:]' '[:lower:]')
 			languages=$($prog --list-languages|sed "s/^/:/;s/$/:/;s/\n/:/;s/,/:/g"|tr '[:upper:]' '[:lower:]') ;;
@@ -503,6 +505,13 @@ colorizer_cmd () {
 	[[ $file == - && -n $final_name ]] && file=$final_name
 	lang=$3
 	case $prog in
+		highlight)
+			[[ -n $lang ]] && opt=(-S "$lang")
+			[[ -n $LESSCOLORIZER && $LESSCOLORIZER = *--style=* ]] && style="${LESSCOLORIZER/*style=/}"
+			[[ -n $style ]] && opt+=(--style="${style%% *}")
+			[[ -n $style ]] && opt+=(-O xterm256) || opt+=(-O ansi)
+			opt+=("--validate-input")
+			[[ "$file" == - ]] || opt+=("$file") ;;
 		pygmentize)
 			# let pygmentite guess the language if not set and input from pipe
 			[[ -n $lang ]] && opt=(-l "$lang")
